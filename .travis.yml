@@ -1,0 +1,10 @@
+language: generic
+services:
+  - docker
+install: 
+  - free -mth
+  - travis_wait 240 docker build -t mapic/mapnik:latest .
+script:
+  - docker run -d --name geo mapic/mapnik:latest htop
+  - docker ps | grep -q mapnik
+  
